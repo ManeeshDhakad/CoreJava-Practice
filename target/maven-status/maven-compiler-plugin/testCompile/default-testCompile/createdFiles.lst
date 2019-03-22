@@ -1,0 +1,4 @@
+com\junit\mockito\ClassToTest.class
+com\junit\mockito\MockitoTest.class
+com\junit\mockito\SpyTest.class
+com\junit\mockito\MyDatabase.class
