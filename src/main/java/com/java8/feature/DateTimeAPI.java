@@ -17,13 +17,15 @@ import java.util.TimeZone;
 /*
 New Date Time API are based on following concepts:
 Immutable-value classes - New classes are immutable so they are thread safe. Developer doesn’t need to worry about concurrency issues in a multi-threaded application.
-Domain-driven design – Previous APIs are not model their domain precisely. Fore example the Date() class was a wrapper around the number of milliseconds since 1970 but when we print it, it also represent a time zone.  The new classes model their domain very precisely.
-Separation of chronologies. The new API allows people to work with different calendaring systems in order to support the needs of users in some areas of the world, such as Japan or Thailand, that don’t necessarily follow ISO-8601. 
-LocalDate() & LocatTime& LocalDateTime classes
-These classes are local in the sense that they represent date and time from the context of the observer i.e. uses the system calendar.  These classes can be used when there is no need of time zone context. For example a desktop application can use these two classes.
+Domain-driven design – Previous APIs are not model their domain precisely. Fore example the Date() class was a wrapper around the number of milliseconds since 1970 
+but when we print it, it also represent a time zone.  The new classes model their domain very precisely.
+Separation of chronologies. The new API allows people to work with different calendaring systems in order to support the needs of users in some areas of the world, 
+such as Japan or Thailand, that don’t necessarily follow ISO-8601. 
+LocalDate() & LocalTime& LocalDateTime classes
+These classes are local in the sense that they represent date and time from the context of the observer i.e. uses the system calendar.  
+These classes can be used when there is no need of time zone context. For example a desktop application can use these two classes.
 LocalDateTime is a composite class, which is a pairing of LocalDate and LocalTime.
-
- */
+*/
 public class DateTimeAPI {
 	
 	public static void main(String[] args) {

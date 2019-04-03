@@ -7,9 +7,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class ConcurrentAPI {
-	String welcome( Object login, Object land ) {
-		if( login.equals("dani")  && land.equals("spain") )	return "welcome";
-			return "not welcome";
+	String welcome(Object login, Object land) {
+		if( login.equals("dani")  && land.equals("spain") )	
+			return "welcome";
+		return "not welcome";
 	}
 
 	

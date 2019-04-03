@@ -1,6 +1,15 @@
 package com.java.designpatterns;
 
 /*
+Project Usage : 
+Class UdemyProgress extends ExternalProgress {}
+Class LyndaProgress extends ExternalProgress {}
+
+Suppose you need to generate progress report.
+1. Manual report
+2. Manual + Udemy report
+3. Manual + Lynda report
+
  Decorator design pattern is used to modify the functionality of an object at runtime. At the same time other 
  instances of the same class will not be affected by this, so individual object gets the modified behavior. 
  Decorator design pattern is one of the structural design pattern (such as Adapter Pattern, Bridge Pattern, Composite Pattern) 
@@ -8,7 +17,6 @@ package com.java.designpatterns;
  */
 
 interface Car {
-
 	public void assemble();
 }
 

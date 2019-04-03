@@ -19,11 +19,11 @@ public class ForEach {
 		for(int i=0; i<10; i++) myList.add(i);
 		
 		//traversing using Iterator, can cause ConcurrentModificationException
-		Iterator<Integer> it = myList.iterator();
-		while(it.hasNext()){
-			Integer i = it.next();
-			System.out.println("Iterator Value::"+i);
-		}
+//		Iterator<Integer> it = myList.iterator();
+//		while(it.hasNext()){
+//			Integer i = it.next();
+//			System.out.println("Iterator Value::"+i);
+//		}
 		
 		//traversing through forEach method of Iterable with anonymous class
 		myList.forEach(new Consumer<Integer>() {

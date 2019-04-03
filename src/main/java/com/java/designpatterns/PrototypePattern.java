@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+Project usage : Clone participantsProgress object to perform operations
+ */
 interface Prototype extends Cloneable{  
 	public Prototype clone() throws CloneNotSupportedException;  
 }

@@ -9,8 +9,8 @@ Equals() and hashCode() contract:
 2. When two objects are equal then they should have same hash value
 3. When two objects having same hash code then they may or may not equal.
 
-If you will not implement equals and hashCode methods then emp1.equals(emp2) will be false
-Because it calls Objects equals method which check reference not content.
+If you will not implement equals and hashCode methods correctly then emp1.equals(emp2) will be false
+Because it calls Objects equals method which check reference not contents.
    
 And not implementing hashCode will give different hashCode for both object.
 And you are end up storing Duplicate elements into map

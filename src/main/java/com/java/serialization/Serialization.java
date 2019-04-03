@@ -14,7 +14,7 @@ import java.io.*;
  *     Serialization will complete successful
  *     D-Serialization will throw "java.io.InvalidClassException"
  *  4. If using any reference which is not implementing  Serializable interface than 
- *     It will throw "java.io.NotSerializableException" as soon as you try to create object of it.
+ *     It will throw "java.io.NotSerializableException" as soon as you try to serialize it.
  *  5. If you super class is implementing Serializable interface and you don't want to 
  *     Serialize your sub class then override readObject() and writeObject() methods in sub class
  *     and throw NotSerializableException 

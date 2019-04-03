@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 //Make a method thread-safe - Method 1
 //Is marking it synchronized enough? The answer is YES.
-//If the method is not static, then adding synchronized keyword willsynchronize the instance of the class, not the Class object.
+//If the method is not static, then adding synchronized keyword will synchronize the instance of the class, not the Class object.
 class MyCounter {
 	private static int counter = 0;
  

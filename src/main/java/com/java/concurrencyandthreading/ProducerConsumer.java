@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Random; 
 /** * Simple Java program to demonstrate How to use wait, notify and notifyAll() 
  * * method in Java by solving producer consumer problem. 
-*/ 
+ */ 
 public class ProducerConsumer { 
 	public static void main(String args[]) { 
 		System.out.println("How to use wait and notify method in Java"); 
@@ -32,7 +32,7 @@ class Producer1 extends Thread {
 		this.queue = queue; 
 		this.maxSize = maxSize; 
 	} 
-	
+
 	@Override public void run() { 
 		while (true) { 
 			synchronized (queue) { 
@@ -45,7 +45,7 @@ class Producer1 extends Thread {
 						ex.printStackTrace(); 
 					} 
 				} 
-				
+
 				Random random = new Random(); 
 				int i = random.nextInt(); 
 				System.out.println("Producing value : " + i); 
@@ -70,7 +70,7 @@ class Consumer1 extends Thread {
 		this.queue = queue; 
 		this.maxSize = maxSize; 
 	} 
-	
+
 	@Override public void run() { 
 		while (true) { 
 			synchronized (queue) { 
@@ -82,7 +82,7 @@ class Consumer1 extends Thread {
 						ex.printStackTrace(); 
 					} 
 				} 
-				
+
 				System.out.println("Consuming value : " + queue.remove()); 
 				queue.notifyAll(); 
 			} 

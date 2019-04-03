@@ -104,6 +104,7 @@ public class FacadePattern {
 		OracleHelper oracleHelper = new OracleHelper();
 		oracleHelper.generateOraclePDFReport(tableName, con1);
 		
+		
 		//generating MySql HTML report and Oracle PDF report using Facade
 		HelperFacade.generateReport(HelperFacade.DBTypes.MYSQL, HelperFacade.ReportTypes.HTML, tableName);
 		HelperFacade.generateReport(HelperFacade.DBTypes.ORACLE, HelperFacade.ReportTypes.PDF, tableName);

@@ -6,7 +6,7 @@ import java.util.List;
 
 // https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java	
 public class Generics {
-	public static <T> List<T> getSome(T... arr) {
+	public static <T> List<T> getList(T... arr) {
 		List<T> list = new ArrayList<>();
 		for(T t : arr)
 			list.add(t);
@@ -16,7 +16,6 @@ public class Generics {
 	
 	public static <T extends Comparable> T min(T t1, T t2) {
 		T smallest = t1;
-		int i = 1;
 		if(smallest.compareTo(t2) > 0) {
 			smallest = t2;
 		}
@@ -26,7 +25,6 @@ public class Generics {
 	
 	public static <T extends Comparable> T max(T t1, T t2) {
 		T largest = t1;
-		int i = 1;
 		if(t2.compareTo(largest) > 0) {
 			largest = t2;
 		}
@@ -51,8 +49,8 @@ public class Generics {
 	}
 	
 	public static void main(String[] args) {
-		List<Integer> listInt = getSome(5, 6, 7, 8);
-		List<String> listString = getSome("A", "B", "C", "D");
+		List<Integer> listInt = getList(5, 6, 7, 8);
+		List<String> listString = getList("A", "B", "C", "D");
 		
 		
 		listInt.forEach(System.out::println);

@@ -3,6 +3,9 @@ package com.java.designpatterns;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 
+/**
+Project usage : Loggers, Properties reading from resources
+ */
 class Singleton {
 
 	private volatile static Singleton _instance;
@@ -87,19 +90,22 @@ class SerializedSingleton implements Serializable{
     }
     
     protected Object readResolve() {
-        return getInstance();
+        return SingletonHelper.instance;
     }
 }
 
 
 
 /*
+How to break singleton 
+======================
 It can break if the class is Serializable
 It can break if its 'Clonable`
 You can break by Reflection (I believe)
 it can break ff multiple classloaders are loaded the class
 
 How do you solve rule breakers?
+===============================
 It is much safer to do eager initialization
 To prevent deserializing to create new object you may override readResolve() method in your class and throw exception
 To prevent cloning, you may overrride clone() and throw CloneNotSupported exception

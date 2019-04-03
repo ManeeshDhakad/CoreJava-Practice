@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/***
+1. If 
+ */
 public class CustomExceptionExample {
 
 	public static void main(String[] args) throws MyException {

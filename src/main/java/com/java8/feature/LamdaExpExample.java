@@ -86,7 +86,7 @@ public class LamdaExpExample {
         list.add("jai");  
           
         list.forEach(  
-            n->System.out.println(n)  
+            n-> System.out.println(n)  
         );  
         
         
@@ -99,7 +99,7 @@ public class LamdaExpExample {
         
         // Print employee list
         empList.forEach(  
-             emp->System.out.println(emp.name) 
+             emp -> System.out.println(emp.name) 
         ); 
 		
 	}

@@ -13,13 +13,7 @@ class Book implements Comparable<Book>{
 		this.quantity = quantity;  
 	}  
 	public int compareTo(Book b) {  
-		if(id>b.id){  
-			return 1;  
-		}else if(id<b.id){  
-			return -1;  
-		}else{  
-			return 0;  
-		}  
+		return id - b.id;
 	}  
 }  
 public class TreeSetExample {  

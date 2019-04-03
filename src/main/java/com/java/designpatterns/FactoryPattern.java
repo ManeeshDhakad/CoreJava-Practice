@@ -1,5 +1,20 @@
 package com.java.designpatterns;
 
+/*
+Project Usage : 
+abstract class ParticipantsProgress {}
+class ManualProgress extends ParticipantsProgress {}
+class ExternalProgress Extends ParticipantsProgress {}
+class ProgressFactory {
+	public ParticipantsProgress getProgress(String progressType) {
+		if(progressType == "Manual")
+			return new ManualProgress();
+		else if(progressType == "External")
+			return ExternalProgress();
+	}
+} 
+
+ */
 import java.io.*;      
 abstract class Plan{  
 	protected double rate;  

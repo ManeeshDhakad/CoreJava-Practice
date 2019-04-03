@@ -7,6 +7,7 @@ interface Interface1 {
 		System.out.println("I1 logging::"+str);
 	}
 
+	
 	static void print(String str){
 		System.out.println("Printing "+str);
 	}
@@ -30,9 +31,9 @@ public class InterfaceStaticDefaultMethod implements Interface1, Interface2 {
 	public void method1(String str) {
 	}
 
-	//MyClass won't compile without having it's own log() implementation
-	// If Both interface have same default method then need to give implementation here
-	// If any of the method do not have default method then no implementation needed here
+	// InterfaceStaticDefaultMethod won't compile without having it's own log() implementation
+	// If Both interface have same named default method then need to give implementation here
+	// If any of the interface do not have default method then no implementation needed here
 	@Override
 	public void log(String str){
 		System.out.println("MyClass logging::"+str);
