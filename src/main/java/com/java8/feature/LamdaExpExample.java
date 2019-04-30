@@ -11,10 +11,14 @@ support for using lambda expressions only with functional interfaces.
 
 Advantage:
 1. Reduced Lines of Code
+2. Readable and manageable code
 2. Sequential and Parallel Execution Support : 
    Stream API sequential and parallel operations support.
-3. Passing Behaviors into methods
+3. Functional programming support (Passing Behaviors into methods)
 
+
+Note : Local variable reference in lambda expression must be final (Mean we can not change local variable value in lambda expression,
+       But we can change instance variable value from lambda expression)
 
 
 () -> { return 42; }         // No parameters, block body with return

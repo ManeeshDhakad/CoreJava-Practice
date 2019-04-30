@@ -4,7 +4,7 @@ import java.util.Enumeration;
 import java.util.Vector; 
 public class VectorDemo { 
    public static void main(String args[]) { 
-     Vector<Integer> v = new Vector<Integer>(3, 2); 
+     Vector<Integer> v = new Vector<Integer>(3, 5); 
      System.out.println("Initial capacity: " + v.capacity());
      v.addElement(new Integer(1));
      v.addElement(new Integer(2)); 

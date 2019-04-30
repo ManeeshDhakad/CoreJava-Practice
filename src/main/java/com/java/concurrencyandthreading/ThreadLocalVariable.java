@@ -2,7 +2,7 @@ package com.java.concurrencyandthreading;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ThreadLocalVariable implements Runnable{
+public class ThreadLocalVariable implements Runnable {
 	private static final AtomicInteger atomicInt = new AtomicInteger(0);
 	private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
 		@Override protected Integer initialValue() {

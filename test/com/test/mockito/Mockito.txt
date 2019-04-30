@@ -1,0 +1,51 @@
+Mockito :
+========
+Mockito is a mocking framework, JAVA-based library that is used for effective unit testing of JAVA applications. 
+Mockito is used to mock interfaces so that a dummy functionality can be added to a mock interface that can be 
+used in unit testing.
+
+Stub : 
+-----
+Created a dummy class of some class which are not available for testing. 
+Like ProductDAO are not available at the time of testing so we can create stub of that to test controller methods
+
+In this case of something got change in method we might need to do some changes in stub
+
+Mock : 
+-----
+Mocking is creating object that simulate the behavior of real objects.
+Unlike stubs, mock can be dynamically created from code -at runtime.
+Mock offer more functionality than Stubbing. 
+You can verify method calls and lots of other things.
+
+Example :
+TodoService todoServiceMock = mock(TodoService.class);
+List<String> todos = Arrays.asList("Learning spring", "Learning spring boot");
+when(todoServiceMock.retrieveTodos("Dummy")).thenReturn(todos);
+
+TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(todoServiceMock);
+List<String> filteredTodos = todoBusinessImpl
+				.retrieveTodosRelatedToSpring("Dummy");
+assertEquals(2, filteredTodos.size());
+
+
+Use when().thenReturn() to assign values in mock object
+
+
+BDD (Behaviour Driven Development)
+----------------------------------
+Given - When - Then 
+
+
+Spy :
+-----
+Instead of dummy object it gives a real kind of object. But still we can some stub in it.
+But not recommended because it create confusion to developers.
+
+Better to use Mock then Spy
+
+
+
+
+
+

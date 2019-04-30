@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,15 +17,53 @@ import java.util.TimeZone;
 
 /*
 New Date Time API are based on following concepts:
-Immutable-value classes - New classes are immutable so they are thread safe. Developer doesn’t need to worry about concurrency issues in a multi-threaded application.
-Domain-driven design – Previous APIs are not model their domain precisely. Fore example the Date() class was a wrapper around the number of milliseconds since 1970 
+Immutable-value classes - New classes are immutable so they are thread safe. Developer doesn’t need to worry 
+about concurrency issues in a multi-threaded application.
+
+Domain-driven design – Previous APIs are not model their domain precisely. Fore example the Date() class 
+was a wrapper around the number of milliseconds since 1970. 
 but when we print it, it also represent a time zone.  The new classes model their domain very precisely.
-Separation of chronologies. The new API allows people to work with different calendaring systems in order to support the needs of users in some areas of the world, 
+
+Separation of chronologies. The new API allows people to work with different calendaring systems in order to 
+support the needs of users in some areas of the world, 
 such as Japan or Thailand, that don’t necessarily follow ISO-8601. 
-LocalDate() & LocalTime& LocalDateTime classes
-These classes are local in the sense that they represent date and time from the context of the observer i.e. uses the system calendar.  
-These classes can be used when there is no need of time zone context. For example a desktop application can use these two classes.
+
+LocalDate() & LocalTime & LocalDateTime classes
+----------------------------------------------
+These classes are local in the sense that they represent date and time from the context of the observer i.e. 
+uses the system calendar.  
+These classes can be used when there is no need of time zone context. 
+For example a desktop application can use these two classes.
+
 LocalDateTime is a composite class, which is a pairing of LocalDate and LocalTime.
+
+
+
+Also known as Joda time API because developed by joda.org :
+---------------------------------------------------------
+Package : java.time.*
+
+//Current system date
+LocalDate date = LocalDate.now();
+int dd = date.getDayOfMonth()
+int mm = date.getMonthValue();
+int yyyy = date.getYear();
+System.out.printf("%d-%d-%d", dd, mm, yyyy)
+
+//Current system time
+LocalTime time = LocalTime.now();
+int hh = time.getHour();
+int mm = time.getMinunt();
+int ss = time.getSecond();
+int nenoS = time.getNeno();
+System.out.printf("%d:%d:%d:%d", hh, mm, ss, nenoS)
+
+//Current system date and time
+LocalDateTime dateTime = LocalDateTime.now();
+we can call the above method here of (LocalDate and LocalTime)
+
+
+
 */
 public class DateTimeAPI {
 	
@@ -84,5 +123,13 @@ public class DateTimeAPI {
 		LocalTime currentTimeInLosAngeles = LocalTime.now(ZoneId.of("America/Los_Angeles"));//local time in Los Aneles
 		LocalTime nowInUtc = LocalTime.now(Clock.systemUTC());// current time in UTC time zone
 
+		
+		LocalDate birthday = LocalDate.of(1988, 7, 7);
+		LocalDate today = LocalDate.now();
+		Period p = Period.between(birthday, birthday);
+		System.out.printf("Your are is %d year %d month %d days", p.getYears(), 
+				p.getMonths(),p.getDays());
+
+		
 	}
 }
