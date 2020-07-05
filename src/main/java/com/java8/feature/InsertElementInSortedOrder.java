@@ -4,9 +4,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-
-
+ 
 class Book {  
 	int id;  
 	String name,author,publisher;  
@@ -22,9 +20,7 @@ class Book {
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", publisher=" + publisher + ", quantity="
 				+ quantity + "]";
-	}  
-	
-	
+	}
 }  
 public class InsertElementInSortedOrder {  
 	public static void main(String[] args) {  

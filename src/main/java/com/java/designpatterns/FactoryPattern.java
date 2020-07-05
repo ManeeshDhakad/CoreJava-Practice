@@ -2,15 +2,15 @@ package com.java.designpatterns;
 
 /*
 Project Usage : 
-abstract class ParticipantsProgress {}
-class ManualProgress extends ParticipantsProgress {}
-class ExternalProgress Extends ParticipantsProgress {}
-class ProgressFactory {
-	public ParticipantsProgress getProgress(String progressType) {
-		if(progressType == "Manual")
-			return new ManualProgress();
-		else if(progressType == "External")
-			return ExternalProgress();
+abstract class PortfolioHandeler {}
+class TraderPortfolio extends PortfolioHandeler {}
+class ManagerPorfolio Extends PortfolioHandeler {}
+class PortfolioFactory {
+	public PortfolioHandeler getProtfolio(String portfolioType) {
+		if(portfolioType == "Trader")
+			return new TraderPortfolio();
+		else if(portfolioType == "Manager")
+			return ManagerPorfolio();
 	}
 } 
 

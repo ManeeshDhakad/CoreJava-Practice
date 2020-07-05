@@ -11,8 +11,9 @@ public class MyArrayList {
         list.add("Learning Core Java");
         list.add("Array List"); 
         
-        Iterator<Object> iterator = list.iterator();
+        Iterator<Object> iterator = list.listIterator();
         while(iterator.hasNext()) {
+        
             System.out.println(iterator.next());
         }
       

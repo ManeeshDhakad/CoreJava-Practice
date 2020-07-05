@@ -1,12 +1,6 @@
 package com.ds.string;
 
-/* 
- *					******** IMPORTANT ********
- *
- * THIS IS SAMPLE SOLUTION. IF YOU FIND BETTER SOLUTION PLEASE CONSIDER USING SAME.
- * USE YOUR OWN VARIABLE NAMES - @@@ DO NOT COPY @@@ EXACT VARIABLE NAMES
- *
- */
+
 import java.util.*;
 
 public class LongestUniformString {

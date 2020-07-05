@@ -60,7 +60,7 @@ public class PascalTriangle {
 				if(line == row)
 				C = C * (line - i) / i;  
 			} 
-			//System.out.println(); 
+			System.out.println(); 
 		} 
 		
 	}
@@ -81,7 +81,7 @@ public class PascalTriangle {
 	}
 
 	public static void main(String[] args) {
-		
+		printPascal(5);
 		if(PascalTriangle.getNumberFromPascalRow(0,0) ==  1 &&
 				PascalTriangle.getNumberFromPascalRow(1,2) ==  2 &&
 				PascalTriangle.getNumberFromPascalRow(5,6) ==  6 &&

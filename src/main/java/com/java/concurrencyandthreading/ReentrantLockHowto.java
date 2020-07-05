@@ -4,13 +4,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Java program to show, how to use ReentrantLock in Java.
- * Reentrant lock is an alternative way of locking
- * apart from implicit locking provided by synchronized keyword in Java.
- *
- * @author  Javin Paul
- */
 public class ReentrantLockHowto {
 
     private final ReentrantLock lock = new ReentrantLock();

@@ -1,18 +1,19 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Consumer;
-
-
+class a {
+	int aa;
+}
 
 public class Main { 
 	
     public static void main(String args[]) { 
-    	List<Integer> list = Arrays.asList(4, 1, 6, 5, 8, 3);
-    	Collections.sort(list, (o1, o2) -> o2-o1);
-    	
-        for(Integer a : list) System.out.println(a);
+    	a a1 = new a();a1.aa = 5;
+    	a a2 = new a();a2.aa = 10;
+    	swap(a1, a2);
+    	System.out.println(a1.aa);
+    }
+    
+    public static void swap(a a1, a a2) {
+    	int  temp = a1.aa;
+    	a1.aa = a2.aa;
+    	a2.aa = temp;
     }
 } 

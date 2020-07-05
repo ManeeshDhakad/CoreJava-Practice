@@ -68,8 +68,8 @@ enum EnumSingleton {
 
     INSTANCE;
     
-    public static void doSomething(){
-        //do something
+    public static Object getInstance(){
+        return INSTANCE;
     }
 }
 

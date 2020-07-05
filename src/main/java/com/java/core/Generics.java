@@ -12,8 +12,7 @@ public class Generics {
 			list.add(t);
 		return list;
 	}
-	
-	
+
 	public static <T extends Comparable> T min(T t1, T t2) {
 		T smallest = t1;
 		if(smallest.compareTo(t2) > 0) {

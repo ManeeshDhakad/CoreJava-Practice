@@ -1,17 +1,5 @@
 package com.ds.string;
 
-
-/* 
-*					******** IMPORTANT ********
-*
-* THIS IS SAMPLE SOLUTION. IF YOU FIND BETTER SOLUTION PLEASE CONSIDER USING SAME.
-* USE YOUR OWN VARIABLE NAMES - @@@ DO NOT COPY @@@ EXACT VARIABLE NAMES
-*
-*/
-
-import java.io.*;
-import java.util.*;
-
 public class ReverseString {
   public static String reverseStr( String str ){
     if( str.length() == 0 )
