@@ -6,12 +6,6 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Java program to demonstrate how to use CyclicBarrier in Java. CyclicBarrier is a
- * new Concurrency Utility added in Java 5 Concurrent package.
- *
- * @author Javin Paul
- */
 public class CyclicBarrierExample {
 
     //Runnable task for each thread

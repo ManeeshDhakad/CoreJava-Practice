@@ -63,7 +63,7 @@ class Singleton {
 }
 
 
-// Enum Singleton is best when using serialization and thrad safety
+// Enum Singleton is best when using serialization and thread safety
 enum EnumSingleton {
 
     INSTANCE;

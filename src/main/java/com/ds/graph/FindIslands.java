@@ -1,4 +1,4 @@
-package com.ds.heap;
+package com.ds.graph;
 
 //Java program to count islands in boolean 2D matrix
 import java.util.*;

@@ -102,6 +102,30 @@ Integer []arr = list.stream().toArray(Integer[] ::new);
 
  */
 
+class Employee {
+	private int salary;
+	private String designation;
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public Employee(int salary, String designation) {
+		super();
+		this.salary = salary;
+		this.designation = designation;
+	}
+	
+	
+}
+
 public class StreamAPI {
 
 	public static void main(String[] args) {
@@ -168,6 +192,14 @@ public class StreamAPI {
 		
 		//Convert array stream, Now you can perform any stream operator
 		Stream<Integer> stream = Stream.of(1, 6,  3, 7, 4, 5);
+		
+		
+		//Calculate total salary of employees who have designation "A"
+		List<Employee> listEmp = new ArrayList<>();
+		listEmp.add(new Employee(101, "A"));
+		listEmp.add(new Employee(102, "B"));
+		listEmp.add(new Employee(103, "A"));
+		System.out.println(listEmp.stream().filter(e -> e.getDesignation().equals("A")).map(e -> e.getSalary()).reduce((a,b) -> a+b).get());
 		
 		
 	}

@@ -124,6 +124,7 @@ class Serialization
 	        System.out.println("D-Serialization completed");
 	        System.out.println("Employee Id : " + emp.getId() + " , Name : " + emp.getName() + " , "
 	        		+ "Address : " + emp.getAddress() + " , Company : " + emp.company.getName());
+	        in.close();
 		}
 		catch (Exception e)
 		{
