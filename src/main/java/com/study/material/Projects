@@ -1,0 +1,136 @@
+Projects: 
+========
+
+Design Patterns(Abstract class or Interface) :
+-------------------------------------------
+Singleton : Loggers, Properties reading from resources or configuration 
+----------
+Factory : 
+--------
+    abstract class PortfolioHandeler {}
+	class TraderPortfolio extends PortfolioHandeler {}
+	class ManagerPorfolio Extends PortfolioHandeler {}
+	class PortfolioFactory {
+		public PortfolioHandeler getProtfolio(String portfolioType) {
+			if(portfolioType == "Trader")
+				return new TraderPortfolio();
+			else if(portfolioType == "Manager")
+				return ManagerPorfolio();
+		}
+	} 
+Prototype : Clone of tranches objects to calculate hidden fields data
+-----------
+Decorator :
+----------
+Decorator design pattern is used to modify the functionality of an object at runtime. At the same time other 
+ instances of the same class will not be affected by this, so individual object gets the modified behavior. 
+ Decorator design pattern is one of the structural design pattern (such as Adapter Pattern, Bridge Pattern, Composite Pattern) 
+ and uses abstract classes or interface with composition to implement.
+ 
+	Suppose you need to generate progress report.
+	1. Manual report
+	2. Manual + Udemy report
+	3. Manual + Lynda report
+
+abstract class Report {
+}
+
+class ReprotDecorator extends report {
+}
+
+class ManualReport extends ReprotDecorator {
+}
+
+class UdemyReport extends ReprotDecorator {
+}
+ 
+
+Report r = new UdemyReport(new ManualReport);
+
+
+DAO : Data base connectivity, Communicate service layer to repository layer
+----
+
+NIC :
+=====
+New Issues Center (NIC) is tool where portfolio managers and traders can manage new issues 
+(Deals) which are about to come or existing in the financial market. 
+PM can create or update Deals with multiple tranches with different maturity years. 
+PM or Traders can place the order on those deals. Orders can updated with quantity and other details. 
+Technologies used: Angular8
+
+Project Chalanges :
+------------------
+Bulk upload deal(s), Create 100 deals at a time and each series assigned with some deal series name.
+If deal seriese created then if second deal in the list refer same deal series then it sould not 
+create the deal series again. Instead refer with same deal series.
+
+1. Parralel call being send from UI code. 
+2. Handled same in backend service if deal series is 
+already created then update its reference with other deals assigned in same deal series.
+3. Managing all saved and unsaved deals so that, We can show message to user whether these deal 
+   not save due to some error.
+   
+
+
+Chat Bot :
+==================
+Chat bot, Google DialogFlow, Challenges
+Chat Bot is an automated chat bot used by Capital group to help stakeholders to get 
+orders and trade related information. User can ask certain question which is trained on google dialog flow. 
+Also it has alerts which can be subscribed by user based on order or trade.
+Technologies used: Angular, Java, Spring Boot, Swagger 2, Hibernate, and Micro Services 
+
+
+SLP : 
+======
+Self Learning Portal is internal learning project, Internal learning team can create a leanring plans, FSD, Asure, AWS Certifications.
+Learning team can then release a mailer to internal emaployees if they want enroll for specific plans. Like wise there will be multiple plans assigned to diffrent
+Project manangers. Participants revert with for enrollments. Then Project manager register those candidates to batch uder specific project. 
+Only those candidate who have registered under batch by PM. they can enroll for plan and can do their study.
+
+SLP portal provide, Milestones and Topics under each milestone. For every topic their will be some  udemy, lynda, or safari link where they they start learing
+After completing topics. Participants can update their progress from 0-100%.
+
+
+Functionality :
+User view :
+1. Enroll for palns View program details.
+2. Update progress.
+3. Change optional missions
+
+Admin View
+1. Create plans
+2. Update palns, add mission, add topic, add batch, add users in bath
+3. Generate reports 
+4. Admin task 
+   Manage admin access
+   Progress status frequency
+   Udemy/lynda progress update
+
+
+Challenges : 
+1. Udemy/Lynda progress update : Project managers use to get monthly excel report from 
+   udemy and lynda, which includes project status of all the participants
+   Who enroll for udmey/lynda courses. Let say there are lots of people who dont have 
+   time to update their progress status on SLP portal but they are 
+   doing continues study on udmey/lynda. now pm wants latest report from SLP portal. 
+   so before generating report from SLP. First udemy/lynda report need to be
+   updated on SLP
+
+   Challenges was : 
+                 Both udemy and lynda report are in diffrent format, And at the end i want 
+                 to combile all the record from both table and store in common object
+                 Then their some multiple rules to update progress (if SLP progress is < udemy 
+				 progress then update with new progress and add to missmatch table)
+				 I have to be vary care full while updating topic progress, because after update 
+				 topic level progress, their mission level progress get changes,
+				 then their plan level progress also get changes. After doing all this 
+				 calculation currectly i need to send mail for specific project owner who 
+				 updated this report. mail includes excel file in attchement which contains 
+				 all the missmatch records.
+				 
+				 Also sperate mails to each participants with thier missmatch progress. 
+				 
+				 Managing end to end flow was very difficult. Since i was very new to mongodb 
+				 and angularJS 1.X.

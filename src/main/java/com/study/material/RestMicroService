@@ -1,0 +1,319 @@
+Rest API :
+==========
+GET : Should not update anything. Should be idempotent (same result in multiple calls). Possible Return Codes 200 (OK) + 404 (NOT FOUND) +400 (BAD REQUEST)
+@GetMapping("/students/{studentId}/courses")    @PathVariable String studentId
+
+POST : Should create new resource. Ideally return JSON with link to newly created resource. Same return codes as get possible. In addition : Return code 201 (CREATED) is possible.
+@PostMapping("/students/{studentId}/courses)  @PathVariable String studentId, @RequestBody Course newCourse
+
+PUT : Update a known resource. ex: update client details. Possible Return Codes : 200(OK)
+@PutMapping("/students/{studentId}/courses)  @PathVariable String studentId, @RequestBody Course newCourse
+
+DELETE : Used to delete a resource.
+@DELETEMapping("/students/{studentId}/courses)  @PathVariable String studentId
+
+
+REST and Micro-Serivces :
+=========================
+Web Service : Machine to Machine interaction, Comunicate over network, Plateform Intependent
+Data exchange format : XML, JSON
+Service Definition : Rquest/Reponse Format, Request Structure, Response Structure, Endpoint
+
+REST : RePresentional State Transfer
+------
+HTTP methods(Get, Post, Put, Delete)
+Get a post for a user : GET /users/{id}/posts/{id}
+Get all post of user : GET /users/{id}/posts
+Create  a post for user : POST /users/{id}/posts
+
+
+Status Code : 200(OK), 400(Not Found)
+Response : XML, JSON
+
+
+Return response while create request :   201 Created
+--------------------------------------
+@PostMapping("users") public ResponseEntity<Object> createUser(@RequestBody User usesr) {
+   User savedUser = service.save(user);
+   URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
+   return ResponseEnity.created(location).build();
+} // This will return 201(Created) status. Also given GET link in header to access created record.
+
+
+Return proper response when user not found :   404 Not Found
+--------------------------------------------
+@ResponseStatus(HTTPStatus.NOT_FOUND)
+public class UserNotFoundException extends RuntimeException {UserNotFoundException(String s) {super(s)}}
+
+@GetMapping("/users/{id}")
+public User getUser(@PathVariable int id) {
+   User user = service.findOne(id);
+   if(user == null) throw new UserNOtFoundException("id-" + id);
+   return user;
+} // Now reponse contain following { timestamp : "date and time", status : 404, error "Not Found", message:"id-2000", path : "/users/2000"}
+
+We can throw same exception in case of Detete user if user is null
+
+Customized error handler :
+--------------------------
+public class ExceptionResponse {
+  private Date timeStamp;
+  private String message;
+  private String details;
+}
+
+@ControllerAdvice //This can use to handle all controllers exception
+@RestController
+public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler{
+   @ExceptionHandler(Exception.class)
+   public final ReponseEntity<Object> handleAllExceptions(Exception ex, WebRequest r) {
+      ExceptionReponse exResponse= new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+	  return new ResponseEntity(exResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+   } // It return internal server error with 500 status code, with specified details of ExceptionResponse class
+   
+   @ExceptionHandler(UserNotFoundException.class)
+   public final ReponseEntity<Object> handleUserNotFoundExceptions(UserNotFoundException ex, WebRequest r) {
+      ExceptionReponse exResponse= new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+	  return new ResponseEntity(exResponse, HttpStatus.NOT_FOUND);
+   } // It return not found error with 404 status code, with specified details of ExceptionResponse class
+   
+   @Override
+   public final ReponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders h, Http status, WebRequest r) {
+      ExceptionReponse exResponse= new ExceptionResponse(new Date(), "Validation Failed", ex.getBindingResult().toString());
+	  return new ResponseEntity(exResponse, HttpStatus.BAD_REQUEST);
+   } // It return Bad request error with 400 status code when any validation failed
+}
+
+
+Java validation API :
+---------------------
+createUser(@valid @ResponseBody User user) {}
+User {
+  @Size(min = 2, message="Name should have atleast 2 characters") //Require minimum 2 char
+  private String name;
+  @Past // Birth date always shoud be of past
+  private Date birthDate;
+}
+When you send invalide request with name less than 2 digit or date is present and future date in birth date then it called above validation exception with
+400 Status code BAD_REQUEST
+
+
+Content Negotiation :
+--------------------
+If you want XML request and response add below dependency
+jackson-dataformat-xml
+
+Now spring boot will auto configure everything for us and now you dont need to do anything in code.
+Just call request and with xml/application formate.
+You will get result in xml formate
+
+
+Swagger2 (Documentation):
+------------------------
+https://dzone.com/articles/spring-boot-2-restful-api-documentation-with-swagg
+Let say you have expose some rest service to client now client dont know how to use it.
+He dont know what is the request, what are the paramenter to send and what will be the response format.
+It that case swagger provide us a way to create documentation as well as UI of our rest service with minimum configuration. We can share this doucment as well as UI with client.
+
+Dependency : 
+1. springfox-swagger2
+2. springfox-swagger-ui
+
+
+localhost:8080/v2/api-docs
+localhost:8080/swagger-ui.html
+
+
+Filter variable in response :
+-----------------------------
+Static Filtering :
+-------------------
+1. Approach
+@JsonIgnore //Exclude this field from reponse
+private String password;
+
+2. Approch
+@JsonIgnoreProperties(value={"password"})
+public class User {}
+
+1st appach is better because we are not hardcoding anything. Even if variable name change it will still work.
+
+Dynamic filtering :
+-------------------
+THis need to be configure in controller itself 
+@Getmapping("filering")
+MappingJacksonValue getUser() {
+  SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllEcept("field1", "field2");
+  FilterProvider filters = new SimpleFilterProvider().addFilter("UserFilter", filter);
+  MappingJacksonValue mapping = new MappingJacksonValue(user)
+  mapping.setFilter(filters);
+  return user;
+}
+
+@JsonFilter("UserFilter")
+public class User {}
+
+Now get user will include only field1 and field2 all other field will be egnored
+
+
+Security :
+----------
+Dependency : spring-boot-starter-security
+
+Appication properties : 
+security.user.name = username
+security.user.password = password
+
+Now while calling REST service you need to provide username and passwrd. Otherwise you will get 401 Unauthorized status code
+
+This is basic authorization, There are other advance authorization that we can you. which is Auth and Auth2 implementation
+
+
+
+Micro-Service :
+===============
+UI -> (ms1, ms2, ms3, ms4) -> (DB1, DB2, DB3, DB4)
+Advantages :
+------------
+- Services are loosly coupled
+- Improves modularity
+- Promotes parallel development
+- Promotes sacalability
+- Plateform independent (Can we develop in any language)
+- Self Contained and Focus on specific tasks
+
+Drawbacks :
+-----------
+- Infrastructure costs are usually higher
+- Integration testing complexity
+- Service management and deployment
+- Nanosrvice anti pattern
+
+Project fails because of lack of :
+Planning, Knowledge, skills, time
+
+
+Micro-Service template :
+-----------------------
+Saves time to create miscroservice setup.
+These template contain follwong things.
+- Logging
+- Metrics
+- Connection setup and configuration to db and message brokers
+- Project structure
+
+
+Code Repository :
+-----------------
+Monolithic vs Descrete code repo
+
+
+Decompose miscro services from mono architechure :
+Order Management -> OrderHistory MS, Order Placement MS, Order Tracking MS, Order Dispute MS
+Cart Management -> Cart Upselling MS, Cart Cost Calculator MS, Cart Promotions MS, Cart Recorvery MS
+
+
+Communication B/W Micro-Services :
+----------------------------------
+1. REST based communication
+2. Asynchronous message based communication
+   Request send message to message broker and targe machine dequeue message from broker to perform task
+
+
+Service Registry :
+-----------------
+It hold information for currently available instances and their network locations
+On MS Startup it registers itself in service registory. Which will add this service instance in DB.
+When MS shuts down it sends request to registory which will remove MS instance from DB. From available instances.
+
+Now it introduce health check API in each instance of MS. Which regalary check the health of MS at some intervals.
+Health check API insure that each MS registered are currently available.
+
+
+Service Descovery :
+------------------
+How MS sends request to other MS are able to call service registory directly or indirectly in order to obtain network loaction of MS.
+
+Client side Dicovery :
+---------------------
+Client directly call request to service registory to get network location of MS. then MS1 can communicate to MS2 easily.
+
+Server side Discory :
+---------------------
+Client Service -> Load balanceer -> service Registroy
+                                 -> MS Instance 1
+								 -> MS Instance 2
+								 
+Client service send requst to Load balancer this communicate to service registory and find network location of instance 
+then it send request to particular instance.
+
+In this case number call may increase to call particular instance. But we can use in-build registory inside load balancer which save time.
+
+
+Database :
+----------
+1. Shared DB - All the MS access same DB. which is not recommanded most of the time for larger and complex system.
+2. DB per Service - Each service have seperate DB.
+
+DB Per Service :
+----------------
+- Different MS can use dirrent technologies(SQL, NoSQL)
+- Easy to maintainace
+
+Disavantages :
+--------------
+- It i hard to write query from multiple MS. Like join queries
+
+Solution :
+-----------
+
+1. API Compostion : (Not recommanded for last data set)
+Here a service refer to API composer which get data from various MS and perform in memory join.
+to produce final result.
+
+2. Event Sourcing :
+Use Event store, services are able to subscribe different types of events. Handled by event store. Here event act like message broker.
+When MS1 update something in DB, It also publish an even with these details to event stor. now whoever has subscribe that event. Event store publishes that message those services.
+Event store contains state of an object at particular time. We can also check the history of events date and time wise. For performace optimisation event store perodically take shapshot of events.
+
+Advantage :
+It provide relieble publicing an event usning event driven architechure
+We can state of any event at any particular time.
+
+
+3. 2 Phare Commit :
+It insure the integrity of data in destributed system
+
+Example :
+E-Commerce -> What if payment service takes payment and order service says out of stock. In this case we can use 2 phase commit to help maintain integrity of data.
+It require seperate service called (Coordinator) 
+
+1 phase : Coordinator send commit request to each of the service connected to it. and they reply Yes or No Depending or thier task completed or not.
+2 phase : If all services replied yes then coordinator send commit message to all the services and these service do their transaction and reply with aknolegement.
+if any service reply with No then coordinator send rollback message to rollback transaction.
+
+It can also happen that all the service reply with Yes. But while commiting any of them reply with No. In this case coordinator send another message to all the sevices
+to revert their previous transaction.
+
+
+4. Saga :
+Choreography-based saga and Orchestrator-based sagas
+
+
+Fault Tolerance & Monitoring 
+----------------------------
+1. Failover Mechanism : 
+There are very less change to fail MS, But still if there are a service wich is realy very importan like Registory. If Registory fails and all system fails.
+In this case we can have Registory back wich will be syn with current registory. So if any failure occures then it autometically switches to backup registory.
+
+2. CircuitBreaker :
+It keep track of number of consecutive request that have failed and check if threshold exceeded.
+
+3. HealthCheck API :
+Healthceck API usually called from Registory to check service is available. This return 200 (OK) if service is healthy, 500 if service in other state, Custom reponses can also be added.
+
+4. Logging Technique :
+Every service request assigned a global service id. and logge in at every service request fails or success.
+So that developer can track with request id and find the issue.
+
+

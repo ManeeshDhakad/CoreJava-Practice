@@ -1,0 +1,377 @@
+Hibernate :
+==========
+
+https://career.guru99.com/hibernate-interview-questions/
+http://www.java67.com/2016/02/top-20-hibernate-interview-questions.html
+https://dzone.com/articles/hibernate-mapping
+
+
+- Difference between get and load methods?
+- Difference between session & session factory. Which one is thread safe?
+
+- what is seconde level cache. Explain in live project
+  https://www.baeldung.com/hibernate-second-level-cache
+  
+- First level & second level cache are associated to which objects?
+  First level cache associated with session object and second level cache assoicated with session factory object
+  
+- Pessimistic and optimistic locking?
+  https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking
+  
+- What are different fetching strategies in hibernate?
+  Join, Batch, Select, Sub-Select fetching
+
+- How do you make your application database independent?
+  https://stackoverflow.com/questions/17167520/database-independency-using-hibernate
+  
+- How does hibernate use proxy objects?
+  Proxy object used for lazy lodding and caching
+  
+- How can we invoke stored procedures in hibernate?
+  https://www.mkyong.com/hibernate/how-to-call-store-procedure-in-hibernate/
+  
+- Hibernate Object lifecycle. Ans (Transient, Persistent, Detached)
+  https://www.java4s.com/hibernate/life-cycle-of-pojo-class-objects-in-the-hibernate/
+ 
+- SQL Injection - 
+  JDBC : Use prepared statement with paramenters
+  Hibernate : https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-hibernate
+ 
+- How have used different type of mappings in your project? Give some examples from your project.
+
+
+JPA :
+-----
+-> entityManager :- It handle JPA transactions, For example entity = course
+   em.persist(entity); - Save entity to db and now object is in persistant context
+                         em.persist(course)
+						 course.setName("Updated name"); // Course name will be updated if @Trasactional used on entity or method, Else gives error.
+						 If we dont use flush method then excecute all the query at-last. if any error ocurred then all the statement is rolled back.
+   em.merge(entity); - Update entity
+   em.flush();       - Send query to db instantly do not wait for other statement to execute, If we not use flush then it will wait for other statement in method to 
+                       execute and then fire query at last.
+					   em.persist(course);
+					   em.flush(course);  - Run query to save record, Even thogh you flush the changes but if any transaction fail later then everything willbe rolled back
+					   course.setName("Updated Name") - Run another query to update record
+   em.clear();     - 
+                      em.persist(course1);
+                      em.persist(course2);
+					  em.clear();  // All object goes to detach state
+					  course1.setName("New Name"); // Query not fire
+					  course2.setName("New Name"); // Query not fire
+					  
+   em.refresh(entity); - It will fire select query and get record from db. 
+						 em.persist(course1);
+						 course1.setName("New Name");
+						 course1.flush();
+						 course1.SetName("New Name"); 
+                         em.refresh(entity) - call seelct query and load db details to course1, override updated column. At the end entity manager finds that                 
+						                      Value is not change for course name so it will not call update query
+						 
+   em.detach();
+                      em.persist(course);
+					  em.flush(course)
+					  em.detach(course)
+					  course.setName("New Name"); // No query executed because object not in persistent state
+
+-> @DirtiesContext : Suppose you are calling unit test on dao and you are doing some updation on db. and another test are validating that old record should be present
+                     in this case you can use @DirtiesContext which execute the test and reset the data as original so that other test will not failed
+
+-> @Table(name="") : if you using same entity name as table name then you dont need use @Table. Also if table name diffrent then @Table(name="CourseDetails")
+                     this will create course_details table in database
+					 
+-> @Id @GeneretedValue : for primary key
+
+-> @Column : Is necessary when you are having dirrent column name, Also you set constraints (Nullable(true/false), unique(true/false), 
+             insetable(true/false), updatable(true/false). But if you dont want to use @Column then always give _ in db name like (emp_name, emp_id, email_id)
+
+-> Named Query : https://www.baeldung.com/hibernate-named-query
+   @NamedQuery(name="query_get_all_coursses", query="select c from course c") @Entity: You can create namedQuery at entity level.
+       TypedQuery<Course> query = em.createNameQuery("query_get_all_courses", Course.Class);
+	   List<Course> list = query.getResultList();
+	  
+    We can also defind multiple named queries
+	@NamedQueries({
+	      @NamedQuery(name="", query=""),
+		  @NamedQuery(name="", query=""),
+		  ...
+    });
+	
+Hibernate :
+-----------			 
+-> @UpdatedTimeStamp private LocalDateTime lastUpdatedDate : Use java 8 LocalDateTime, Autometically update new datetime when update query executed
+-> @CreatedTimeStamp private LocalDateTime currUpdatedDate : Use java 8 LocalDateTime, Autometically insert datetime when insert query executed
+
+
+Mapping :
+--------
+Cascade Types :
+https://howtodoinjava.com/hibernate/hibernate-jpa-cascade-types/
+
+Note : 
+1. Always use @Trasactional when you using Lazy loading. Else you will get error while accessing associated calss. Here you will get error below. 
+   Student st = em.find(User.class, primaryKey); // Execute successfully but if its lazy loading then it will not get passport details.
+   st.getPassport() // Gets error. Because now transaction is not in persistant state. It can not perform select query if @Transactional is not implemented.
+
+- One to One mapping :
+---------------------
+@OneTo@One : Default is eager fetching
+Ex  Student { @OneToOne Passport passport}  In this case when i fetch details for Studen.
+    Passport detail will also be fetched.
+
+@OneTo@One(fetch=FetchType.Lazy) : Now it will fetch passport details only when its needed.
+    student.getPassport() // Fetch passport details now
+
+    Bidirectional Reletionship:
+	--------------------------
+	Passport { @OneTo@One(fetch=FetchType.Lazy) Student student; Now passport table also can have student record. But this is duplication of colomn
+	
+	solution
+	Passport { @OneTo@One(fetch=FetchType.Lazy, mappedBy="passport") Student student: Now only passport_id will be created in student table. 
+	    student_id will not be Created, And both way we have have information of student and passport
+	
+	
+- Many to One  and Many to One mapping :
+-----------------------
+Ex. Course {}, Review {} - 1 Course can have may reviews.
+Course {
+  @OneToMany(mappedBy="course")
+  private List<Reviews> reviews;
+}
+
+Review {
+  @ManyToOne
+  private Course course;
+}
+
+It will create course_id in review table. But we can access in both wasys
+
+Note :
+@OneToMany is Lazy Fetching By default
+@ManyToOne is Eager fetching by default
+
+
+- Many to Many mapping :
+------------------------
+Ex. Course {}, Student {} - many course can have many students 
+
+
+Course {
+  @ManyToMany(mappedBy="course")
+  private List<Student> student;
+}
+
+Student {
+  @ManyToMany
+  @JoinTable(name="Student_Course",
+  JoinColum=@JoinColumn(name="Student_Id"),
+  inverseJoinColumn(name="course_Id"))
+  private List<Course> course;
+}
+	
+Note : In this case we can make mappedBy in any table
+now we can see student_course table created
+
+Student_Course { Student_Id, Course_Id}
+
+Query :
+select * from Student_Course sc, Student s, Course c where
+sc.student_id = s.id and sc.course_id = c.id;
+
+@ManyToMany is Lazy fetch by default
+
+
+
+Inheritance :
+-------------
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DescriminatorColumn(name="EmployeeType")
+abstract class Employee {String name}
+@Entity
+class PartTimeEmployee extends Emloyee {BigDecimal hourlyWage}
+@Entity
+class FullTimeEmployee extends Employee {BigDecimal salary}
+
+Single Table Option :
+--------------------
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) : This create single employee table(Employee_Type, id, name, hourly_wage, salary)
+@DescriminatorColumn(name="EmployeeType")
+Bad design :- This will allow null data. Example - for partime employee salary will be null and vica versa
+
+Table Per Class :
+----------------
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DescriminatorColumn : Not needed here
+It will create two tables 
+Full_Time_Employee { ID, NAME, SALARY}
+Part_Time_Employee { ID, NAME, HOURLY_WAGE}
+
+Select table use union to get details from both table
+It is good for performance and maintainace perspective
+But common column repeated in both tables.
+
+
+Joined :
+--------
+@Inheritance(strategy = InheritanceType.JOINED)
+
+It will create 3 different tables 
+Employee {id, name}
+Full_Time_Employee { ID (This id employee id from employee table), SALARY}
+Part_Time_Employee { ID (This id employee id from employee table), HOURLY_WAGE}
+
+Subclasses dont have thier own primary key, it using foreign key as primary key
+
+Use join to get details from all tables.
+
+It is good option in terms of db design. also there is no duplicacy of data.
+But for performance it had to do complex join query from all table. Imagine if there are 100 table it
+may show down the performance
+
+
+MappedSupperClass :
+-------------------
+Dont use @Inheritance  and @Entity instead use 
+
+@MappedSuperClass
+
+It will create 2 table exactly similar to TABLE_PER_CLASS
+Now it is similar to TABLE_PER_CLASS but here there is no inheritance concepts
+Mean we need to fire sperate query for full_time_employee and part_time_employee
+
+
+Senario and 2 best option :
+--------------------------
+1. Data integrity and data quality : 
+   Joined - (Because here column used only once and using foreign for joining
+   Here we can make all column as not nullable, and there is no chance for bad data
+2. Performance :
+   SingleTable - Queries will be very fast but data integrity will not be here
+
+Other option having duplicate data will is bad db design and also voilating 3rd normal form
+
+
+
+JPQL : 
+-------
+1. List of course with no student
+   TypedQuery<Course> query = em.createQuery("	 Course c where c.students is empty", Course.class);
+   List<Course> list = query.getResultList();
+2. List of course where student >= 2
+   "Select c from Course c where size(c.students) >= 2"
+   "Select c from Course c where order by size(c.students) >= 2"
+   By defult this will print in accending order of student, append "desc" at last to print in descending order
+3. "select s from student s where s.passport.number like '%ABC%'"
+4. Join
+   Query query = em.createQuery("select c, s from course c JOIN c.students s")
+   List<Object> restList = query.getResultList();
+   : Matched records from both table
+   
+   Left Join
+   "select c, s from course c LEFT JOIN c.students s" : All the record from left and match record from right
+   
+   Cross Join
+   "select c, s from course, Student s" : All the record from both table
+   
+   
+Criteria Queries :
+------------------
+1. CriteriaBuilder cb = em.getCriteriaBuilder();
+   CriteraQuery<Course> cq = cb.createQuery(Course.class);
+   Root<Course> courseRoot = cq.from(Course.class);
+   Predicate like = cq.like("name", "%ABCD");
+   cq.where(like); // Course name end with ABCD
+   TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+   
+   Course do not have student
+   Predicate isEmpty = cb.isEmpty(courseRoot.get("student"));
+   cq.where(isEmpty);
+   
+   
+   courseRoot.join(students)
+   courseRoot.join(students, JoinType.LEFT_JOIN)
+
+   
+   
+Transaction Management :
+------------------------
+https://www.wideskills.com/hibernate/transactions-and-concurrency-in-hibernate
+
+@Transactional : javax (JPA) : Manage single db transaction 
+@Transactional : Spring Transactional : Can manage multiple db transaction
+
+
+Caching :
+---------
+1st Level Cache : Associated with single session
+-----------------
+Firs level cache associated for single transaction. When you use @Transactional on some method. 
+When you call findByID(ID) first time then it go to DB.
+After that any number of findByID(ID) call it will not fire query to DB. Just fetch result from First level cache
+
+Make sure to use @Transactional for first level cache. Then it enalbled first level cache autometically
+
+2nd Level Cache : Associated for entire application (SessionFactory)
+-----------------
+Add dependency : 
+  hibernate-ehcache
+  
+Enable Second level cache :  
+  spring.jpa.properties.hibernate.cache.use_second_level_cache = true
+
+Specify cache type :
+  *hibernate.cache.region.factory_class = org.hibernate.cache.ehcache.EhCacheRegionFactory
+  
+Only chache what i tell to cache :
+  spring.jpa.properties.javax.persistence.sharedCache.mode=ENABLE_SELECTIVE
+  It enable only which are declared as cachable.
+  
+Enable logging for ehcache :
+  logging.level.net.sf.ehcache=debug
+  
+Tell hibernate what to cache :
+  @Entity
+  @Cacheable
+  class Course {
+  }
+   
+Now if you request localhost:8080/course/201
+
+I will fire query for course then 1 query for review of courses
+Now if you call again Then only reivew query will be fire 
+Specific to instance of an application.
+
+If there are multiple instances then use detributed caching
+
+Sort Delete :
+-------------
+Instead of deleting row permanatly add column isDeleted 
+@Entity
+@SQLDelete(sql="update course set is_deleted=true where id=?")
+@Where(clause="is_deleted = false")
+public class Course{}
+
+Now while selecting it call @Where and while deleting it call @SQLDelete
+1. But here if you are using native queries then you need to mention "where is_deleted = false"
+2. add @PreRemove it prevent other transaction to use this course
+   @PreRemove private void preReove() { this.isDeleted = true;}
+ 
+There are other life cycle method alos :
+PostLoad, PostPersist, PostRemove, PostUpdate, Pre(For all these)
+
+ 
+N + 1 Problem : Solution
+---------------
+1. Disable lazy fetch : Not recommanded
+2. EntityGraph
+   EntityGraph<Course> entityGraph = em.createEntityGraph(Course.class);
+   SubGraph<Object> subGraph = entityGraph.addSubgraph("students");
+   List<Course> courses = em.createNamedQuery("query_get_all_courses", Course.class).
+       .setHind("javax.persistence.loadgraph", entityGraph).getResultList();
+
+3. Joined fetch  
+   @NamedQueries(value = {
+       @NamedQuery(name= "get_all_course_join_fetch",
+       query= "Select c from course c join fetch c.students.s")
+	})

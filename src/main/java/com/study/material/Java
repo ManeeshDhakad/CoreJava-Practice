@@ -1,0 +1,121 @@
+Java :
+======
+-> Manage app security :
+   HTTPS instead of HTTP
+   SFTP(Secure file transfer protocol instead of FTP
+   VPN (Virtual private network) instead public network
+   Proper input data validation 
+   Proper authentication 
+   Use captcha
+   Request and Response end to end entryption 
+   SQL and Command Injection prevention
+   SQL Injection (Use prepared statement in JDBC or use Hibernate)
+   Command Injection - Validate data send in command before execution
+   
+-> STS Practice program, Design Pattern with current project examples
+
+- Java 7 changes
+  
+  Resource, Multiple Catch using (|), String in Switch Expression, Underscores Between Digits in Numeric Literals for readability,
+  main() required to execute static blocks
+  
+- Core java 
+  https://javarevisited.blogspot.com/2015/10/133-java-interview-questions-answers-from-last-5-years.html
+  
+- Different ways to create object 
+  https://www.geeksforgeeks.org/different-ways-create-objects-java/
+  
+- Abstraction, Encapsulation
+- Abstract class vs Interface 
+  https://javarevisited.blogspot.com/2013/05/difference-between-abstract-class-vs-interface-java-when-prefer-over-design-oops.html
+  http://www.java67.com/2017/08/difference-between-abstract-class-and-interface-in-java8.html
+	
+- Inheritance, Composition, Aggregation
+  https://javarevisited.blogspot.com/2014/02/ifference-between-association-vs-composition-vs-aggregation.html
+  https://javarevisited.blogspot.com/2013/06/why-favor-composition-over-inheritance-java-oops-design.html
+  
+- Java support pass by value or by reference?  
+  https://www.journaldev.com/3884/java-is-pass-by-value-and-not-pass-by-reference
+  
+- Why override equals and hashcode   :   
+  https://programming.guide/java/overriding-hashcode-and-equals.html
+  
+- Collection Framework - List, Set, Map, Queue, Stack, Comparator/Comparable,
+  ConcurrentHashMap, CopyOnArraylist, (ConcurrentModificationException), FailFast/Safe Interator
+  https://javahungry.blogspot.com/2015/05/50-java-collections-interview-questions-and-answers.html
+  
+- Inner Classes
+  https://www.geeksforgeeks.org/inner-class-java/
+  
+- Immutable objects
+  https://www.geeksforgeeks.org/create-immutable-class-java/
+  
+- String pool, String, StringBuffer, StringBuilder 
+  https://www.journaldev.com/538/string-vs-stringbuffer-vs-stringbuilder
+
+
+- Volatile with old and new memory model
+  https://dzone.com/articles/java-multi-threading-volatile-variables-happens-be-1
+
+- Concurrency, Multi-threading, Sleep/Wait/Notify/Interruption/Join, Deadloack and solution 
+  Future/Callables/Blocking Queue, Executer framework ,why and how,thread pooling, 
+  producer/consumer using wait()/notify(), Cyclic Barrier , Countdown Latch, ReentrantLock
+  https://javarevisited.blogspot.com/2014/07/top-50-java-multithreading-interview-questions-answers.html
+  
+- CompletableFuture
+  https://www.baeldung.com/java-completablefuture
+  
+- ExecutorService
+  https://www.callicoder.com/java-executor-service-and-thread-pool-tutorial/
+  Thread pool size : Runtime.getRuntime().availableProcessors() or availableProcessors() + 1
+  
+- Serialization
+  https://javarevisited.blogspot.com/2011/04/top-10-java-serialization-interview.html
+  
+- Exception handling, how to create own custom unchecked exceptions.
+  https://www.journaldev.com/1696/exception-handling-in-java
+  https://www.journaldev.com/2167/java-exception-interview-questions-and-answers
+  Design patern used by Exception Handler : Chain of Responsibilities
+  
+- Garbage Collection Basic, Java Performance Tuning
+  https://www.baeldung.com/java-memory-management-interview-questions
+  https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java
+
+- Write your own Generic Class/ methods,  extends, super and wildcard usage
+  https://www.geeksforgeeks.org/generics-in-java/
+  
+- What design pattern java IO impletement
+  Decorator
+  
+- Marker Interfaces : Serealizable, Clonable
+
+- Shutdown Hook
+  https://www.geeksforgeeks.org/jvm-shutdown-hook-java/
+  
+- What are new changes in Java 8?    
+  Lambda, Stream , Functional Interface, Default and Static Methods in Interface, Changes in Collection API, Changes in Date/Time API, 
+  Metaspace instead of permgen in GC, CompletableFuture.	
+  https://www.journaldev.com/2389/java-8-features-with-examples
+  https://javarevisited.blogspot.com/2014/02/10-example-of-lambda-expressions-in-java8.html
+
+
+- Junit/Mockito 
+  https://www.vogella.com/tutorials/JUnit/article.html
+  https://www.vogella.com/tutorials/Mockito/article.html
+  
+  
+  SQL :
+======
+https://artoftesting.com/interviewSection/sql-queries-for-interview.html
+http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
+https://javarevisited.blogspot.com/2017/02/top-6-sql-query-interview-questions-and-answers.html
+
+
+JavaScript and jQuery :
+=======================
+https://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/
+https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-practice-questions-answers-du107p62z
+https://www.guru99.com/javascript-interview-questions-answers.html
+https://career.guru99.com/top-50-jquery-interview-questions/
+
+  

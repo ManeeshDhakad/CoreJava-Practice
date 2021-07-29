@@ -1,0 +1,55 @@
+
+Spring :
+=======
+
+https://www.edureka.co/blog/interview-questions/spring-interview-questions/
+https://www.youtube.com/watch?v=yNY8HLk1hNM
+
+- How Spring dependency injection works and ways of DI
+- Auto Wiring. How it is done in spring.
+- Annotations for Auto wiring.
+- All the scopes and their detials.
+- Is spring's singleton bean scope is simiar as the Java Singleton pattern?     
+  https://dzone.com/articles/an-interview-question-on-spring-singletons
+  
+- Spring bean life Cycle.    
+  https://javabeginnerstutorial.com/spring-framework-tutorial/java-spring-bean-lifecycle/
+  
+- what is a transaction in Spring. How it works in Spring 
+  https://www.javacodegeeks.com/2016/05/understanding-transactional-annotation-spring.html
+  
+- Spring JDBC 
+  https://www.journaldev.com/2593/spring-jdbc-example 
+  https://www.journaldev.com/2603/spring-transaction-management-jdbc-example
+  
+- Spring Hibernate
+  https://www.journaldev.com/3524/spring-hibernate-integration-example-tutorial
+  https://www.journaldev.com/3531/spring-mvc-hibernate-mysql-integration-crud-example-tutorial
+
+- What is AOP, how it is helpful?
+  https://howtodoinjava.com/spring-aop-tutorial/
+  https://www.journaldev.com/7772/spring-orm-example-aop-transactions
+
+- Spring Boot Basics
+  https://www.dineshonjava.com/spring-boot-interview-questions-and-answers/
+  
+- How to used rest web services with Spring boot
+  http://www.springboottutorial.com/creating-rest-service-with-spring-boot
+  DevTools starter to automatic re-run app if any changes by developer
+
+- Post custruct and pre destory
+  https://www.mkyong.com/spring/spring-postconstruct-and-predestroy-example/
+  
+- Circular Dependency : https://www.logicbig.com/tutorials/spring-framework/spring-core/circular-dependencies.html
+                        Use setter injection, @Lazy in constructor
+
+- Static Method in Spring :  https://stackoverflow.com/questions/27296276/invoke-static-method-from-spring-config
+
+- @Component vs @ComponentScan vs @Service vs @Bean vs @Repository
+  http://www.java2novice.com/spring/auto-scan-components/
+  https://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/
+
+
+- @Qualifier :  https://www.tutorialspoint.com/spring/spring_qualifier_annotation.htm
+
+- How to convert beans into JSON format : user jackson.databind.ObjectMapper.writeValue(file, Object)
