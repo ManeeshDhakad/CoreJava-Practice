@@ -1,7 +1,5 @@
 package com.ds.list;
 
-import com.ds.list.LoopInLinkedList.Node;
-
 public class IsListPalindrom {
 	Node head; // head of list
 	Node slow_ptr, fast_ptr, second_half;

@@ -28,7 +28,7 @@ class Customer {
 }
 
 
-public class MyPriorityQueue {
+public class PriorityQueueExample {
 	public static void main(String[] args) {
 
 		//natural ordering example of priority queue

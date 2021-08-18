@@ -1,3 +1,4 @@
+
 package com.java8.feature;
 
 import static org.junit.Assert.assertFalse;

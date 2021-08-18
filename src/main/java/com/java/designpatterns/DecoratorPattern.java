@@ -1,9 +1,19 @@
 package com.java.designpatterns;
 
 /*
-Project Usage : 
-Class UdemyProgress extends ExternalProgress {}
-Class LyndaProgress extends ExternalProgress {}
+abstract class Report {
+}
+
+class ReprotDecorator extends report {
+}
+
+class ManualReport extends ReprotDecorator {
+}
+
+class UdemyReport extends ReprotDecorator {
+}
+
+
 
 Suppose you need to generate progress report.
 1. Manual report

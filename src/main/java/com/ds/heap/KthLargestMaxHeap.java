@@ -1,7 +1,5 @@
 package com.ds.heap;
 
-import com.ds.heap.KthSmallestMinHeap.MinHeap;
-
 public class KthLargestMaxHeap {
 	//A class for Max Heap
 		class MaxHeap

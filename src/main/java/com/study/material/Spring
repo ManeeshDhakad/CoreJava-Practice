@@ -5,6 +5,9 @@ Spring :
 https://www.edureka.co/blog/interview-questions/spring-interview-questions/
 https://www.youtube.com/watch?v=yNY8HLk1hNM
 
+- Dispacher Servlet 
+  https://docs.spring.io/spring-framework/docs/3.0.0.M4/spring-framework-reference/html/ch15s02.html
+  
 - How Spring dependency injection works and ways of DI
 - Auto Wiring. How it is done in spring.
 - Annotations for Auto wiring.

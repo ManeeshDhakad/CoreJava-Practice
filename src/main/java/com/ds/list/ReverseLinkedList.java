@@ -4,18 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Node1 {
-	Node1 next;
-	int data;
-	Node1(int data) {
-		this.data = data;
-		next = null;
-	}
-}
-
 public class ReverseLinkedList { 
-	static Node1 insert(Node1 head, int data) {
-		Node1 newNode = new Node1(data);
+	static Node insert(Node head, int data) {
+		Node newNode = new Node(data);
 		if(head == null) {
 			head = newNode;
 		} else {
@@ -25,10 +16,10 @@ public class ReverseLinkedList {
 		return head;
 	}
 
-	static Node1 reverse(Node1 head) {
-		Node1 curr = head;
-		Node1 prev = null;
-		Node1 next = null;
+	static Node reverse(Node head) {
+		Node curr = head;
+		Node prev = null;
+		Node next = null;
 		while(curr != null) {
 			next = curr.next;
 			curr.next = prev;
@@ -38,8 +29,8 @@ public class ReverseLinkedList {
 		return prev;
 	}
 
-	static void print(Node1 head, List<Integer> list) {
-		Node1 curr = head;
+	static void print(Node head, List<Integer> list) {
+		Node curr = head;
 		while(curr != null) {
 			list.add(curr.data);
 			curr = curr.next;
@@ -49,7 +40,7 @@ public class ReverseLinkedList {
 
 
 	static boolean doTest() {
-		Node1 head = insert(null, 10);
+		Node head = insert(null, 10);
 		head = insert(head, 20);
 		head = insert(head, 30);
 		head = insert(head, 40);

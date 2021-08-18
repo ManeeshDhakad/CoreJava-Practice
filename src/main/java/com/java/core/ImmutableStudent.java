@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 // An immutable class
+// Why String is final even though it is immutable
+// Because if someone try to change reference of string and it should not allow.
 public final class ImmutableStudent {
 	private final String name;
 	private final int regNo;

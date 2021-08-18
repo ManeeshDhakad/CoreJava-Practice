@@ -9,7 +9,6 @@ class KthSmallestMinHeap
 	class MinHeap
 	{
 		int[] harr; // pointer to array of elements in heap
-		int capacity; // maximum possible size of min heap
 		int heap_size; // Current number of elements in min heap
 
 		int parent(int i) { return (i - 1) / 2; }

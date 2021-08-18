@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 //https://www.baeldung.com/java-executor-service-tutorial
+// execute(Runnable) => execute does not return anything
+// submit(Callable<T>) => return the Future
 public class ExecutorAndThreadPool implements Callable<String> {
 
 	

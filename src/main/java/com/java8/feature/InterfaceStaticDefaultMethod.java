@@ -1,7 +1,6 @@
 package com.java8.feature;
 
 /*
- 
 Java 8 Interface vs Abstract Class :
 Interface :																				   Abstract Class
 1. All variables are public static and final. We can not declare instance variable.		   1. We can declare instance variable.
@@ -28,7 +27,7 @@ Static Method :
   
   
 Note : We can declare main method in java8 Interface also we can directly run Interface containing main method.
- */
+*/
 interface Interface1 {
 	void method1(String str);
 

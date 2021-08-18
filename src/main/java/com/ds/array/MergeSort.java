@@ -2,7 +2,7 @@ package com.ds.array;
 
 /*
  * 
-  Merge Sort                                   Vs                        Quick Sort
+  Merge Sort                                   Vs           Quick Sort
   Works well with any size of array							works well with smaller size array
   Complexity O(nlogn)										Complexity O(n2) for worst case sinario
   Stable													Not stable 
@@ -70,7 +70,7 @@ class MergeSort
 	{
 		if (l < r) {
 			// Find the middle point
-			int m =l+ (r-l)/2;
+			int m = l + (r-l)/2;
 
 			// Sort first and second halves
 			sort(arr, l, m);

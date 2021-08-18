@@ -1,5 +1,16 @@
 Projects: 
 ========
+Project in depth (Scalability, 10,000 request per second, How backend service or db will handle)
+
+
+Solid Principle :
+----------------
+https://www.baeldung.com/solid-principles
+Single Responsibility
+Open/Closed
+Liskov Substitution
+Interface Segregation
+Dependency Inversion
 
 Design Patterns(Abstract class or Interface) :
 -------------------------------------------

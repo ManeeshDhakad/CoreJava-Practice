@@ -12,6 +12,15 @@ PUT : Update a known resource. ex: update client details. Possible Return Codes 
 DELETE : Used to delete a resource.
 @DELETEMapping("/students/{studentId}/courses)  @PathVariable String studentId
 
+Authentication :
+----------------
+https://auth0.com/blog/spring-boot-authorization-tutorial-secure-an-api-java/
+
+
+12 Factor app serice 
+=====================
+  https://www.nginx.com/blog/microservices-reference-architecture-nginx-twelve-factor-app/
+
 
 REST and Micro-Serivces :
 =========================

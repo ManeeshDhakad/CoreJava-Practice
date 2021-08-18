@@ -2,16 +2,11 @@ package com.ds.list;
 
 public class SortedInsertInCircularList {
 
-
-
 	Node head;
 
 	// Constructor
 	SortedInsertInCircularList() { head = null; }
 
-	/* function to insert a new_node in a list in sorted way.
-	Note that this function expects a pointer to head node
-	as this can modify the head of the input linked list */
 	void sortedInsert(Node new_node)
 	{
 		Node current = head;
@@ -88,6 +83,3 @@ public class SortedInsertInCircularList {
 		list.printList();
 	}
 }
-
-//This code has been contributed by Mayank Jaiswal
-

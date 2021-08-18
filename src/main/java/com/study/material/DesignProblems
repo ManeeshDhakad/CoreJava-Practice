@@ -1,3 +1,148 @@
+URL Sortening :
+==============
+https://www.geeksforgeeks.org/system-design-url-shortening-service/
+
+
+Parking lot design :
+===================
+https://www.youtube.com/watch?v=S2DYTxEkGJg
+
+
+Design message delivery system : 
+==================================
+https://hackernoon.com/designing-a-messaging-system-using-enterprise-integration-patterns-86a998a07bd3
+https://towardsdatascience.com/designing-notification-system-with-message-queues-c30a2c9046de
+
+
 Design Shopping Cart :
 =====================
+Use strategy design pattern for coupons
+
+public class Product {
+	private String productId;
+	private string name;
+	private String Desc;
+	private double price;
+	private ProductCategory category;
+	private int availableItemCount;
+	private Account seller;
+}
+
+public class ProductCategory {
+  	private String name;
+  	private String desc;
+}
+
+public class Item {
+	private String productId;
+	private int quantity;
+	private double price;
+	updateQuantity(int quantity)
+}
+
+public class Cart {
+	private List<Item> items;
+	public boolean addItem(Item item);
+	public boolean removeItem(Item item)
+	public boolean updateItemQunatity(Item item, int quantity);
+	public List<Item> getItems();
+	public boolean checkout();
+	
+	
+	//public applyCoupon1(Item item, int percentage);
+}
+
+
+public class DiscountValue implements Checkout {
+    private final Checkout baseCheckout;
+    private final String discountedItem;
+    private final int minimumAmount;
+    private final double discountValue;
+
+    public DiscountValue(Checkout base, String item, int min, double discount) {
+         this.baseCheckout = base;
+         this.discountedItem = item;
+         this.minimumAmount = min;
+         this.discountValue = discount;
+    }
+
+    @Override
+    public double calculateTotal(List<String> shoppingCart) {
+        int count = Collections.frequency(shoppingCart, discountedItem);
+        // Integer division gives the number of times the discount is applied
+        double deduction = (count / minimumAmount) * discountValue;
+        return baseCheckout.calculateTotal(shoppingCart) - deduction;
+    }
+}
+
+public class CheckoutProcess {
+   public void checkout {
+		Checkout pricing = new SimpleCheckout();
+	    pricing.addPrice("Apple", 0.25);
+	    pricing.addPrice("Orange", 0.6);
+	    pricing = new DiscountValue(pricing, "Apple", 2, 0.25); // I'm using a straight-up refund here
+	    pricing = new DiscountValue(pricing, "Orange", 3, 0.60); // I'm using a straight-up refund here
+	    List<String> shoppingCart = new ArrayList<>();
+	    shoppingCart.add("Apple");
+	    shoppingCart.add("Orange");
+	    shoppingCart.add("Apple");
+	    shoppingCart.add("Apple");
+	    System.out.prinln(pricing.calculateTotal(shoppingCart));
+	}
+}
+
+
+
+
+
+public class Account {
+	private String userName;
+	private String password;
+	private AccountStatus status;
+	private String name;
+	private Address shippingAddress;
+	private String email;
+	private String phone;
+	private List<CreditCard> creditCards;
+	
+	public boolean addProduct(Product product);
+	public addProductReview(ProductReview review);
+}
+
+public class Customer {
+	private Account account;
+	private ShoppingCart cart;
+	private Order order;
+	
+	public bool AddItemToCart(Item item);
+	public bool removeItemFromCart(Item item);
+	public OrderStatus placeOrder(Order order);
+}
+
+public class Order {
+	private Strihng orderNumber;
+	private OrderStatus status;
+	private Date orderDate;
+	private List<OrderLog> orderLog;
+	
+	public boolean sendForShipment();
+	public boolean makePayment(Payment payment);
+	public boolean addOrderLog(OrderLog orderLog);
+}
+
+public class OrderLog {
+	private String orderNumber;
+	private Date creationDate;
+	private OrderSatus status;
+}
+
+public class Shipment {
+	private String shipmentNumber;
+	private Date shipmentDate;
+	private Date estimatedArrival;
+	private String shipmentMethod;
+	private Order OrderDetails;
+}
+
+
 

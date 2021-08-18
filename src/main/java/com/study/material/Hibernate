@@ -6,6 +6,21 @@ http://www.java67.com/2016/02/top-20-hibernate-interview-questions.html
 https://dzone.com/articles/hibernate-mapping
 
 
+@Entity 
+public class Project {
+   @Id  //Primary key
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private int projId;  
+   
+   @EmabaddedId ProjectId id; // Composite key
+}
+
+class ProjectId {
+   private int projId;
+   private int deptId;
+}
+
+
 - Difference between get and load methods?
 - Difference between session & session factory. Which one is thread safe?
 

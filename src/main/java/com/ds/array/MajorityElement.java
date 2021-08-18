@@ -20,8 +20,8 @@ public class MajorityElement {
 	int findCandidate(int a[], int size)
 	{
 		int maj_index = 0, count = 1;
-		int i;
-		for (i = 1; i < size; i++) {
+
+		for (int i = 1; i < size; i++) {
 			if (a[maj_index] == a[i])
 				count++;
 			else

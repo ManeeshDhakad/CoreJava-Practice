@@ -44,6 +44,9 @@ Java :
   ConcurrentHashMap, CopyOnArraylist, (ConcurrentModificationException), FailFast/Safe Interator
   https://javahungry.blogspot.com/2015/05/50-java-collections-interview-questions-and-answers.html
   
+- Why hashmap time complexity is O(1)
+  https://javabypatel.blogspot.com/2015/10/time-complexity-of-hashmap-get-and-put-operation.html
+  
 - Inner Classes
   https://www.geeksforgeeks.org/inner-class-java/
   
@@ -57,6 +60,9 @@ Java :
 - Volatile with old and new memory model
   https://dzone.com/articles/java-multi-threading-volatile-variables-happens-be-1
 
+- Thread dump vs heap dump
+  https://stackoverflow.com/questions/1300497/difference-between-javacore-thread-dump-and-heap-dump-in-websphere
+  
 - Concurrency, Multi-threading, Sleep/Wait/Notify/Interruption/Join, Deadloack and solution 
   Future/Callables/Blocking Queue, Executer framework ,why and how,thread pooling, 
   producer/consumer using wait()/notify(), Cyclic Barrier , Countdown Latch, ReentrantLock
@@ -78,6 +84,7 @@ Java :
   Design patern used by Exception Handler : Chain of Responsibilities
   
 - Garbage Collection Basic, Java Performance Tuning
+  https://www.javatpoint.com/types-of-garbage-collector-in-java
   https://www.baeldung.com/java-memory-management-interview-questions
   https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java
 
@@ -109,6 +116,9 @@ Java :
 https://artoftesting.com/interviewSection/sql-queries-for-interview.html
 http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
 https://javarevisited.blogspot.com/2017/02/top-6-sql-query-interview-questions-and-answers.html
+
+- Deadlock in DBMS 
+  https://www.geeksforgeeks.org/deadlock-in-dbms/
 
 
 JavaScript and jQuery :

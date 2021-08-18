@@ -77,4 +77,3 @@ public class LoopInLinkedList {
 	} 
 } 
 
-// This code has been contributed by Mayank Jaiswal 

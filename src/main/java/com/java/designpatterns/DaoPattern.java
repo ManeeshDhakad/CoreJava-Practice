@@ -5,6 +5,15 @@ import java.util.List;
 
 
 /*
+ 
+class PortfolioInfo {}
+
+interface PortfolioDao { getAllPortfolio(); savePortfolio(PortfolioInfo port)}
+class PortfolioDaoImpl {}
+class PortfolioDtails() { PortfolioDao portDao = new PortFolioDaoImpl(); portDao.getAllPortfolio() }
+
+
+
 DAO stands for Data Access Object. DAO Design Pattern is used to separate the data 
 persistence and logic in a separate layer. This way, the service remains completely in dark 
 about how the low-level operations to access the database is done. This is known as the 
