@@ -131,7 +131,7 @@ Note :
 - One to One mapping :
 ---------------------
 @OneTo@One : Default is eager fetching
-Ex  Student { @OneToOne Passport passport}  In this case when i fetch details for Studen.
+Ex  Student { @OneToOne Passport passport}  In this case when i fetch details for Student.
     Passport detail will also be fetched.
 
 @OneTo@One(fetch=FetchType.Lazy) : Now it will fetch passport details only when its needed.
@@ -178,9 +178,7 @@ Course {
 
 Student {
   @ManyToMany
-  @JoinTable(name="Student_Course",
-  JoinColum=@JoinColumn(name="Student_Id"),
-  inverseJoinColumn(name="course_Id"))
+  @JoinTable(name="Student_Course", JoinColum=@JoinColumn(name="Student_Id"),  inverseJoinColumn(name="course_Id"))
   private List<Course> course;
 }
 	

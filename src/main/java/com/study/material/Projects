@@ -62,6 +62,30 @@ Report r = new UdemyReport(new ManualReport);
 DAO : Data base connectivity, Communicate service layer to repository layer
 ----
 
+
+
+Authentication :
+--------------
+JWT Tocken for authentication
+
+Authorization : 
+---------------
+check user details by userId
+
+Scalability : 
+-------------
+MicroServices 
+Cloud -> AutoScale -> Base on cpu utilization, IO utilization
+         Upscale/Downgrade
+
+Failover -> Handled by cloud -> Spin-up new instance
+		 
+Primary DB : 
+Secondry DB (Replica) : Realtime Replica 
+
+Backup DB : Every night
+
+
 NIC :
 =====
 New Issues Center (NIC) is tool where portfolio managers and traders can manage new issues 
@@ -77,8 +101,20 @@ If deal seriese created then if second deal in the list refer same deal series t
 create the deal series again. Instead refer with same deal series.
 
 1. Parralel call being send from UI code. 
-2. Handled same in backend service if deal series is 
-already created then update its reference with other deals assigned in same deal series.
+   
+   async createBulkCall(requestList : any) {
+	   var dataToJoin = forkJoin(requestList);
+	   return dataToJoin.toPromise();
+   }
+   
+   var responseList = await service.createBulkCall(requestList);
+   
+2. Handled same at backend service if deal series is already created then update its reference with other deals assigned in same deal series.
+   Use Executor.newCachedThreadPool()
+   Create thread pool where threads will Interger.MAX_VALUE
+   Unused thread will be terminated from the cached pool if not used for 60 seconds 
+   
+   
 3. Managing all saved and unsaved deals so that, We can show message to user whether these deal 
    not save due to some error.
    

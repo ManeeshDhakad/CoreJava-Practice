@@ -12,6 +12,11 @@ PUT : Update a known resource. ex: update client details. Possible Return Codes 
 DELETE : Used to delete a resource.
 @DELETEMapping("/students/{studentId}/courses)  @PathVariable String studentId
 
+
+Difference between Put/Post/Patch
+--------------------------------
+https://stackoverflow.com/questions/31089221/what-is-the-difference-between-put-post-and-patch
+
 Authentication :
 ----------------
 https://auth0.com/blog/spring-boot-authorization-tutorial-secure-an-api-java/

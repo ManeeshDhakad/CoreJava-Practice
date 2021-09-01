@@ -12,6 +12,9 @@ Java :
    SQL Injection (Use prepared statement in JDBC or use Hibernate)
    Command Injection - Validate data send in command before execution
    
+-> Marker Interface 
+   It is an empty interface (no field or methods). Examples of marker interface are Serializable, Cloneable and Remote interface. All these interfaces are empty interfaces.
+   
 -> STS Practice program, Design Pattern with current project examples
 
 - Java 7 changes
